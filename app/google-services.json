@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "469594564",
+    "firebase_url": "https://firetasmiktiga-default-rtdb.firebaseio.com",
+    "project_id": "firetasmiktiga",
+    "storage_bucket": "firetasmiktiga.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469594564:android:d20d6308370795c1853491",
+        "android_client_info": {
+          "package_name": "com.testing.firetasmiktiga"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469594564-5v37ms8a41ccaa9k5o219ktruea2q9gs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.testing.firetasmiktiga",
+            "certificate_hash": "77a3dede8dadb84725908b47f71e748d6e7b9ccd"
+          }
+        },
+        {
+          "client_id": "469594564-os1rs2mvj7g32s4216u1shn86q4r7dgs.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDaIcSyeZWlNm9WjU6TZlzqDluTIK1azgk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469594564-os1rs2mvj7g32s4216u1shn86q4r7dgs.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
