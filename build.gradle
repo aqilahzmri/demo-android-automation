@@ -22,9 +22,19 @@ plugins {
 }
 
 sonar {
-  properties {
-    property "sonar.projectKey", "try"
-  }
-}
+    properties {
+        property "sonar.projectName", "try"
+        property "sonar.projectKey", "try"
+        property "sonar.tests", ["src/test/java"]
+        property "sonar.test.inclusions", "**/*Test*/**"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.sources", "src/main/java"
+        property "sonar.exclusions", '**/*Test*/**,' +
+                '*.json,' +
+                '**/*test*/**,' +
+                '**/.gradle/**,' +
+                '**/R.class'
+               }
+          }
 
 
