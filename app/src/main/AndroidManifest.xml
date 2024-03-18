@@ -16,7 +16,6 @@
         <activity android:name=".ProfileActivity" />
         <activity android:name=".MainActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".profile.LogoutActivity" />
         <activity
             android:name=".LoginActivity"
             android:exported="true">
