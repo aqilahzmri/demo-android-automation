@@ -20,27 +20,48 @@ jobs:
           distribution: 'zulu'
           java-version: '17'
           
-      - name: Grant execute permissions for gradlew (macOS)
-        run: chmod +x ./gradlew 
-
-      - name: Decode Keystore
-        run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > /tmp/keystore.jks
-
-      # - name: Build APK Release
-      #   run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
-
-      - name: Build Bundle AAB Release
-        run: ./gradlew bundleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
-
-      - name: Check the path
-        run: |
-          ls -la app/build/outputs/
-          ls -la app/build/outputs/bundle
-          ls -la app/build/outputs/bundle/release
-
-      - uses: actions/upload-artifact@v4
+      - name: Cache SonarQube packages
+        uses: actions/cache@v1
         with:
-          name: android-demo
-          path: app/build/outputs/bundle/release/app-release.aab
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+          
+      - name: Cache Gradle packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: ${{ runner.os }}-gradle
+          
+      - name: Build and analyze
+        env:
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        run: ./gradlew build sonar --info
+          
+      # - name: Grant execute permissions for gradlew (macOS)
+      #   run: chmod +x ./gradlew 
+
+      # - name: Decode Keystore
+      #   run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > /tmp/keystore.jks
+
+      # # - name: Build APK Release
+      # #   run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+
+      # - name: Build Bundle AAB Release
+      #   run: ./gradlew bundleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+
+      # - name: Check the path
+      #   run: |
+      #     ls -la app/build/outputs/
+      #     ls -la app/build/outputs/bundle
+      #     ls -la app/build/outputs/bundle/release
+
+      # - uses: actions/upload-artifact@v4
+      #   with:
+      #     name: android-demo
       #     path: app/build/outputs/bundle/release/app-release.aab
-      #     path: app/build/outputs/apk/
+      # #     path: app/build/outputs/bundle/release/app-release.aab
+      # #     path: app/build/outputs/apk/
