@@ -23,9 +23,9 @@ plugins {
 
 sonar {
     properties {
-        property "sonar.projectName", "try"
-        property "sonar.projectKey", "try"
-        property "sonar.tests", ["src/test/java"]
+        property "sonar.projectName", "android-app"
+        property "sonar.projectKey", "android-app"
+        property "sonar.tests", ["app/src/test/java"]
         property "sonar.test.inclusions", "**/*Test*/**"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.sources", "app/src/main/java"
