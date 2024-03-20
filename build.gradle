@@ -29,9 +29,7 @@ sonar {
         property "sonar.test.inclusions", "**/*Test*/**"
         property "sonar.sourceEncoding", "UTF-8"
         property "sonar.sources", "src/main/java"
-        property "sonar.exclusions", '**/*Test*/**,' +
-                '*.json,' +
-                '**/*test*/**,' +
+        property "sonar.exclusions", '*.json,' +
                 '**/.gradle/**,' +
                 '**/R.class'
                }
