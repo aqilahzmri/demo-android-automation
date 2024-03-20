@@ -10,6 +10,7 @@ buildscript {
     dependencies {
         // Add the dependency for the Google services Gradle plugin
         classpath 'com.google.gms:google-services:4.4.1'
+        classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.5.0.2730'
 
     }
 }
@@ -21,9 +22,17 @@ plugins {
 }
 
 sonar {
-  properties {
-    property "sonar.projectKey", "try"
-  }
-}
+    properties {
+        property "sonar.projectName", "android-app"
+        property "sonar.projectKey", "android-app"
+        property "sonar.tests", ["src/test/java"]
+        property "sonar.test.inclusions", "**/*Test*/**"
+        property "sonar.sourceEncoding", "UTF-8"
+        property "sonar.sources", "src/main/java"
+        property "sonar.exclusions", '*.json,' +
+                '**/.gradle/**,' +
+                '**/R.class'
+               }
+          }
 
 
