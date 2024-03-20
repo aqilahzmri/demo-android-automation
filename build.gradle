@@ -19,7 +19,7 @@ plugins {
     id 'com.android.application' version '8.3.0' apply false
     id 'com.android.library' version '8.3.0' apply false
     id "org.sonarqube" version "3.5.0.2730"
-    id "jacoco"
+    id 'jacoco'
 }
 
 sonar {
@@ -39,6 +39,7 @@ sonar {
 jacocoTestReport {
     reports {
         xml.enabled true
+        html.enabled true
     }
 }
 
