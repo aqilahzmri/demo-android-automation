@@ -13,19 +13,14 @@ buildscript {
         classpath 'org.sonarsource.scanner.gradle:sonarqube-gradle-plugin:3.5.0.2730'
 
     }
-    plugins {
-        id 'jacoco'
-    }
 }
 
 plugins {
     id 'com.android.application' version '8.3.0' apply false
     id 'com.android.library' version '8.3.0' apply false
     id "org.sonarqube" version "3.5.0.2730"
-    id 'jacoco'
+    // id 'jacoco'
 }
-
-apply plugin: 'jacoco'
 
 sonar {
     properties {
@@ -41,14 +36,15 @@ sonar {
     }
 }
 
-jacocoTestReport {
-    reports {
-        xml.enabled true
-        html.enabled true
-    }
-}
+// jacocoTestReport {
+//     reports {
+//         xml.enabled true
+//         html.enabled true
+//     }
+// }
 
 // test.finalizedBy jacocoTestReport
+
 // tasks.named('sonarqube').configure {
 //     dependsOn test
 // }
