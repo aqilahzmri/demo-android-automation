@@ -63,34 +63,34 @@ jobs:
   run-if-passed:
     name: Run if Quality Gate Passed
     needs: scan
-    if: ${{ needs.scan.outputs['sonarqube-quality-gate-check'] == 'FAILED' }}
+    # if: ${{ needs.scan.outputs['sonarqube-quality-gate-check'] == 'FAILED' }}
     runs-on: ubuntu-latest
     steps:
-      # Add steps for the job to run if quality gate passed
-      - name: Step 1
-        run: echo "fail"
+      # # Add steps for the job to run if quality gate passed
+      # - name: Step 1
+      #   run: echo "fail"
           
-      # - name: Grant execute permissions for gradlew (macOS)
-      #   run: chmod +x ./gradlew 
+      - name: Grant execute permissions for gradlew (macOS)
+        run: chmod +x ./gradlew 
 
-      # - name: Decode Keystore
-      #   run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > /tmp/keystore.jks
+      - name: Decode Keystore
+        run: echo "${{ secrets.KEYSTORE }}" | base64 --decode > /tmp/keystore.jks
 
-      # # - name: Build APK Release
-      # #   run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+      # - name: Build APK Release
+      #   run: ./gradlew assembleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
-      # - name: Build Bundle AAB Release
-      #   run: ./gradlew bundleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
+      - name: Build Bundle AAB Release
+        run: ./gradlew bundleRelease -Pandroid.injected.signing.store.file=/tmp/keystore.jks -Pandroid.injected.signing.store.password=${{ secrets.KEYSTORE_PASSWORD }} -Pandroid.injected.signing.key.alias=${{ secrets.KEY_ALIAS }} -Pandroid.injected.signing.key.password=${{ secrets.KEY_PASSWORD }}
 
-      # - name: Check the path
-      #   run: |
-      #     ls -la app/build/outputs/
-      #     ls -la app/build/outputs/bundle
-      #     ls -la app/build/outputs/bundle/release
+      - name: Check the path
+        run: |
+          ls -la app/build/outputs/
+          ls -la app/build/outputs/bundle
+          ls -la app/build/outputs/bundle/release
 
-      # - uses: actions/upload-artifact@v4
-      #   with:
-      #     name: android-demo
+      - uses: actions/upload-artifact@v4
+        with:
+          name: android-demo
+          path: app/build/outputs/bundle/release/app-release.aab
       #     path: app/build/outputs/bundle/release/app-release.aab
-      # #     path: app/build/outputs/bundle/release/app-release.aab
-      # #     path: app/build/outputs/apk/
+      #     path: app/build/outputs/apk/
