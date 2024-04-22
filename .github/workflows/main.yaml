@@ -105,5 +105,3 @@ jobs:
           packageName: com.testing.firetasmiktiga
           releaseFile: app/build/outputs/bundle/release/app-release.aab
           track: qa
-      #     path: app/build/outputs/bundle/release/app-release.aab
-      #     path: app/build/outputs/apk/
