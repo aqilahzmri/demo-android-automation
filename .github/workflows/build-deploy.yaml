@@ -32,8 +32,6 @@ jobs:
 
       - name: Check the path
         run: |
-          ls -la app/build/outputs/
-          ls -la app/build/outputs/bundle
           ls -la app/build/outputs/bundle/release
 
       - uses: actions/upload-artifact@v4
