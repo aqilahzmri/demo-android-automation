@@ -11,8 +11,8 @@ android {
         applicationId "com.testing.firetasmiktiga"
         minSdk 21
         targetSdk 34
-        versionCode 4
-        versionName "demo-android(1.4)"
+        versionCode 5
+        versionName "demo-android(1.5)"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
