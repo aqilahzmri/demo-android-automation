@@ -56,4 +56,4 @@ jobs:
           serviceAccountJson: service_account.json
           packageName: com.testing.firetasmiktiga
           releaseFiles: app/build/outputs/bundle/release/app-release.aab
-          track: qa
+          track: internal
